@@ -10,11 +10,11 @@ class gravatarService extends gravatar {
         } elseif (isset($_SERVER['PATH_INFO'])) {
             $pathinfo = $_SERVER['PATH_INFO'];
         } else {
-            $pathinfo = '';
+            $pathinfo = array();
         }
 
         if ($pathinfo != '') {
-            $pathinfo = explode('/', urldecode($_SERVER['PATH_INFO']));
+            $pathinfo = explode('/', urldecode($pathinfo));
             array_shift($pathinfo);
         }
 

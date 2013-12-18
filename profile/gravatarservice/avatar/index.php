@@ -11,16 +11,20 @@ if (isset($_SERVER['ORIG_PATH_INFO'])) {
 } elseif (isset($_SERVER['PATH_INFO'])) {
     $pathinfo = $_SERVER['PATH_INFO'];
 } else {
-    $pathinfo = '';
+	$pathinfo = array();
 }
 
 if ($pathinfo != '') {
-    $pathinfo = explode('/', urldecode($_SERVER['PATH_INFO']));
+    $pathinfo = explode('/', urldecode($pathinfo));
     array_shift($pathinfo);
 }
 
 if ($pathinfo[count($pathinfo) - 1] == '') {
     $droplast = array_pop($pathinfo);
+}
+
+if ($pathinfo[0] == '') {
+    $pathinfo[0] = 'beau';
 }
 
 class avatar {
