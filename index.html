@@ -50,6 +50,15 @@
                 box-shadow:         13px 13px 30px rgba(50, 50, 50, 0.75);
             }
 
+            .forkme {
+                position: absolute;
+                position: fixed;
+                top: 0;
+                left: 0;
+                border: 0;
+                z-index: 9999;
+            }
+
             @media (max-width: 979px) {
                 .nav li {
                     width: 50%;
@@ -57,6 +66,14 @@
             }
 
             @media (max-width: 767px) {
+                .forkme {
+                    position: absolute;
+                }
+
+                h1 {
+                    padding-left: 100px;
+                }
+
                 .nav a {
                     transition: 0.3s ease-out;
                 }
@@ -82,9 +99,16 @@
                     width: 100%;
                 }
             }
+
+            @media (max-width: 400px) {
+                .forkme {
+                    display: none;
+                }
+            }
         </style>
     </head>
     <body>
+        <a class="forkme" href="https://github.com/jslegers/custom-gravatar"><img src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
         <div class="site-center">
             <div class="site-body panel">
                 <div class="body">

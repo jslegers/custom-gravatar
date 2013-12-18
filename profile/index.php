@@ -35,7 +35,7 @@
             .detailed .photo {
                 display: block;
                 width: 100%;
-                height: 100%;
+                height : auto;
             }
 
             .gallery li {
@@ -64,7 +64,7 @@
             .avatar, .QR {
                 clear: both;
             }
-            
+
             .avatars .title {
                 margin: 0 15px;
             }
@@ -97,10 +97,25 @@
             }
 
             .hide {
+                clip: rect(0 0 0 0);
+                height: 1px;
+                width: 1px;
+                margin: -1px;
+                overflow: hidden;
                 position: absolute;
-                height: 0px;
-                display: none;
-                *display: inline;
+            }
+
+            .forkme {
+                _display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                border: 0;
+                z-index: 9999;
+            }
+
+            .site-center {
+                overflow: hidden;
             }
 
             @media (max-width: 979px) {
@@ -114,6 +129,14 @@
                     -webkit-border-radius: 0;
                     -moz-border-radius: 0;
                     border-radius: 0;
+                }
+
+                .forkme {
+                    position: absolute;
+                }
+
+                h1 .icon {
+                    color: #fff;
                 }
 
                 .identifier {
@@ -161,6 +184,10 @@
             }
 
             @media (max-width: 400px) {
+                .forkme {
+                    display: none;
+                }
+
                 .websites a {
                     float: none;
                     padding: 5px;
@@ -191,6 +218,7 @@
         </style>
     </head>
     <body>
+        <a class="forkme" href="https://github.com/jslegers/custom-gravatar"><img src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
         <div class="site-center">
             <div class="site-body panel">
                 <div class="body">
@@ -417,12 +445,11 @@
 
             }
             var process = function(data) {
-                console.log(data);
                 if (data.displayName)
                     $('.fn').text(data.displayName);
                 else
                     $('.name-section').addClass('hide');
-                if (data.name && data.name.length > 0) {
+                if (data.name) {
                     if (data.name.givenName)
                         $('.given-name').text(data.name.givenName);
                     if (data.name.familyName)
