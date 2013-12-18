@@ -1,12 +1,12 @@
-Custom Gravatar
+Gravatar app
 ===============
 
-This is a small toolset written in PHP and JS to demonstrate and improve Gravatar's features
+This is a simple app written in PHP and JS to demonstrate and improve Gravatar's features
 
 
 ##Demo
 
-For a live demo, go to [http://jslegers.github.io/custom-gravatar](http://jslegers.github.io/custom-gravatar).
+For a live demo, go to [http://www.johnslegers.com/gravatar](http://www.johnslegers.com/gravatar).
 
 ##License
 
