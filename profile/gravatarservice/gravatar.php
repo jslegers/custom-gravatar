@@ -5,6 +5,13 @@ define('GRAVATAR_USERAGENT', "MozillaXYZ/1.0");
 define('GRAVATAR_HEADER', 0);
 define('GRAVATAR_RETURNTRANSFER', true);
 define('GRAVATAR_TIMEOUT', 10);
+define('PRODUCTION', false);
+if (!PRODUCTION) {
+    error_reporting(E_ALL ^ E_NOTICE);
+    ini_set('display_errors', 1);
+} else {
+    error_reporting(0);
+}
 
 // http://www.jonasjohn.de/snippets/php/curl-example.htm
 
@@ -55,7 +62,7 @@ class gravatar {
     }
 
     public static function process($array) {
-        $results = [];
+        $results = array();
         
         foreach ($array as $key => $arraykey) {
             if ($key == 0) {
