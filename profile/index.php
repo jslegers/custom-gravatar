@@ -1,25 +1,4 @@
-<?php
-if (isset($_SERVER['ORIG_PATH_INFO'])) {
-    $pathinfo = $_SERVER['ORIG_PATH_INFO'];
-} elseif (isset($_SERVER['PATH_INFO'])) {
-    $pathinfo = $_SERVER['PATH_INFO'];
-} else {
-	$pathinfo = array();
-}
-
-if ($pathinfo != '') {
-    $pathinfo = explode('/', urldecode($pathinfo));
-    array_shift($pathinfo);
-}
-
-if ($pathinfo[count($pathinfo) - 1] == '') {
-    $droplast = array_pop($pathinfo);
-}
-
-if ($pathinfo[0] == '') {
-    $pathinfo[0] = 'beau';
-}
-?>
+<?php require('gravatarservice/curler.php'); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -561,7 +540,7 @@ if ($pathinfo[0] == '') {
                     $('.accounts-section').addClass('hide');
             }
 
-            $.getJSON("gravatarservice/<?php echo $pathinfo[0]; ?>", process);
+            $.getJSON("gravatarservice/<?php echo array_shift(curler::getPathInfo()); ?>", process);
         </script>
     </body>
 </html>

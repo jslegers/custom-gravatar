@@ -1,21 +1,7 @@
 <?php
+require('avatar.php');
 
-define('GRAVATAR_REFERER', "http://www.example.org/yay.htm");
-define('GRAVATAR_USERAGENT', "MozillaXYZ/1.0");
-define('GRAVATAR_HEADER', 0);
-define('GRAVATAR_RETURNTRANSFER', true);
-define('GRAVATAR_TIMEOUT', 10);
-define('PRODUCTION', false);
-if (!PRODUCTION) {
-    error_reporting(E_ALL ^ E_NOTICE);
-    ini_set('display_errors', 1);
-} else {
-    error_reporting(0);
-}
-
-// http://www.jonasjohn.de/snippets/php/curl-example.htm
-
-class gravatar {
+class gravatar extends avatar {
     protected $_data;
     protected $_results;
 
@@ -61,7 +47,7 @@ class gravatar {
         return $this;
     }
 
-    public static function process($array) {
+    public static function process($array = array()) {
         $results = array();
         
         foreach ($array as $key => $arraykey) {
@@ -134,50 +120,6 @@ class gravatar {
     public function __get($path) {
         return $this->get($path);
     }
-
-    public static function load($requestHash) {
-
-        // is cURL installed yet?
-        if (!function_exists('curl_init')) {
-            die('Sorry cURL is not installed!');
-        }
-
-        if (filter_var($requestHash, FILTER_VALIDATE_EMAIL)) {
-            // valid address
-            $requestHash = md5($requestHash);
-        }
-
-        // OK cool - then let's create a new cURL resource handle
-        $ch = curl_init();
-
-        // Now set some options (most are optional)
-        // Set URL to download
-        curl_setopt($ch, CURLOPT_URL, 'http://en.gravatar.com/' . $requestHash . '.php');
-
-        // Set a referer
-        curl_setopt($ch, CURLOPT_REFERER, GRAVATAR_REFERER);
-
-        // User agent
-        curl_setopt($ch, CURLOPT_USERAGENT, GRAVATAR_USERAGENT);
-
-        // Include header in result? (0 = yes, 1 = no)
-        curl_setopt($ch, CURLOPT_HEADER, GRAVATAR_HEADER);
-
-        // Should cURL return or print out the data? (true = return, false = print)
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, GRAVATAR_RETURNTRANSFER);
-
-        // Timeout in seconds
-        curl_setopt($ch, CURLOPT_TIMEOUT, GRAVATAR_TIMEOUT);
-
-        // Download the given URL, and return output
-        $output = curl_exec($ch);
-
-        // Close the cURL resource, and free system resources
-        curl_close($ch);
-
-        return unserialize($output);
-    }
-
 }
 
 ?>
