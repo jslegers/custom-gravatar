@@ -5,11 +5,11 @@ This is a simple app written in PHP and JS to demonstrate and improve Gravatar's
 
 The app is responsive in all modern browsers. It falls back to a desktop layout in IE6-8.
 
-##Demo
+## Demo
 
 For a live demo, go to [http://www.johnslegers.com/gravatar](http://www.johnslegers.com/gravatar).
 
-##License
+## License
 
 This code is MIT licensed.
 
